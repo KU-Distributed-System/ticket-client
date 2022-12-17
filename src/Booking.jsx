@@ -5,20 +5,17 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 let dates = [Moment(), Moment().add(1, 'days'), Moment().add(2, 'days')];
 
 let cinemaList = [
-    "1st Avenue Mall",
-    "Gurney Plaza",
-    "Gurney Paragon",
-    "Queensbay Mall",
+    "블루스퀘어",
+    "아트센터"
 ]
 
 let movieList = [
-    "Tom and Jerry",
-    "Godzilla vs Kong",
-    "Raya and the Last Dragon",
-    "Mortal Kombat",
+    "엘리자베스",
+    "라이언킹",
+    "데스노트"
 ]
 
-let slotList = ["10:30 AM", "12:00 PM", "04:30 PM", "06:00 PM", "08:00 PM"];
+let slotList = ["05:00 PM ", "07:00 PM"];
 
 let seatList = [
     { seatNumber: ["A1", "A2", "A3", "A4", "A5"] },

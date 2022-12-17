@@ -105,13 +105,6 @@ function Home(props) {
             </div>
 
 
-            <div id="promotions" className="home-content">
-                <div>
-                    <div>Promotions</div>
-                </div>
-                <hr />
-                <div style={{ fontSize: "16px", fontWeight: "normal", marginLeft: "10px", marginBottom: "50px" }}>No promotion yet.</div>
-            </div>
         </>
     )
 }

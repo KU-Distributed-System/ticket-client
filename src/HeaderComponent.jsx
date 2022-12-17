@@ -48,17 +48,16 @@ function HeaderComponent(props) {
             <div className={"header-navbar active"}>
                 <FontAwesomeIcon className="menu-bar" icon={faBars} onClick={() => setMenu(true)} />
                 <div className={"left-navbar" + (menu ? " active" : "")}>
-                    <div onClick={() => setMenu(false)}><Link to="/">ABC Company</Link> <FontAwesomeIcon className="menu-close" icon={faTimes} onClick={() => setMenu(false)} /></div>
-                    <div onClick={() => setMenu(false)}><Link to="/Movies">Movies</Link></div>
-                    <div onClick={() => setMenu(false)}><Link to="/Cinemas">Cinemas</Link></div>
-                    <div onClick={() => setMenu(false)}><Link to={{ pathname: "/", hash: "#promotions" }} >Promotions</Link></div>
+                    <div onClick={() => setMenu(false)}><Link to="/">DSTicketSystem</Link> <FontAwesomeIcon className="menu-close" icon={faTimes} onClick={() => setMenu(false)} /></div>
+                    <div onClick={() => setMenu(false)}><Link to="/Movies">Concerts</Link></div>
+                    <div onClick={() => setMenu(false)}><Link to="/Cinemas">Theater</Link></div>
                 </div>
                 <div className="right-navbar">
                     <div className={"search" + (search ? " focus" : "")} ref={searchRef}>
                         <FontAwesomeIcon icon={faSearch} onClick={() => { inputRef.current.focus(); }} />
                         <input
                             ref={inputRef}
-                            placeholder="Search by movie"
+                            placeholder="Search by concert"
                             value={searchInput}
                             onChange={e => setSearchInput(e.target.value)}
                             onFocus={() => setSearch(true)}

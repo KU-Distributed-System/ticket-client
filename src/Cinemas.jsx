@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 let list = [
-    { id: 0, name: "1st Avenue Mall", address: "Level 8, 1st Avenue Mall, Jalan Magazine, 10300 Georgetown, Pulau Pinang, Malaysia" },
-    { id: 1, name: "Gurney Plaza", address: "Level 6, Gurney Plaza, Jalan Magazine, 10250 Georgetown, Pulau Pinang, Malaysia" },
-    { id: 2, name: "Gurney Paragon", address: "Level 7, Gurney Paragon, Jalan Magazine, 10250 Georgetown, Pulau Pinang, Malaysia" },
-    { id: 3, name: "Queensbay Mall", address: "Level 5, Queensbay Mall, Jalan Magazine, 10300 Bayan Lepas, Pulau Pinang, Malaysia" },
+    { id: 0, name: "블루스퀘어", address: "서울특별시 용산구 한남동" },
+    { id: 1, name: "아트센터", address: "서울특별시 서초구 서초동" }
 ]
 
 function Cinemas(props) {
@@ -19,7 +17,7 @@ function Cinemas(props) {
             <div className="cinema-search">
                 <FontAwesomeIcon icon={faSearch} />
                 <input
-                    placeholder="Search by cinema"
+                    placeholder="Search by Theater"
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                     spellCheck="false"

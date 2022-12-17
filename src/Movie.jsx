@@ -7,22 +7,19 @@ import { Collapse } from 'reactstrap';
 let dates = [Moment(), Moment().add(1, 'days'), Moment().add(2, 'days')];
 
 let cinemaList = [
-    { value: null, label: "All Cinemas" },
-    { value: 0, label: "1st Avenue Mall" },
-    { value: 1, label: "Gurney Plaza" },
-    { value: 2, label: "Gurney Paragon" },
-    { value: 3, label: "Queensbay Mall" },
+    { value: null, label: "All Theaters" },
+    { value: 0, label: "블루스퀘어" },
+    { value: 1, label: "아트센터" }
 ]
 
 let movieList = [
-    { value: null, label: "All Movies" },
-    { value: 1, label: "Tom and Jerry" },
-    { value: 2, label: "Godzilla vs Kong", },
-    { value: 3, label: "Raya and the Last Dragon" },
-    { value: 4, label: "Mortal Kombat" },
+    { value: null, label: "All Concerts" },
+    { value: 1, label: "엘리자베스" },
+    { value: 2, label: "라이온킹", },
+    { value: 3, label: "데스노트" }
 ]
 
-let slotList = ["10:30 AM", "12:00 PM", "04:30 PM", "06:00 PM", "08:00 PM"];
+let slotList = ["05:00 PM", "07:00 PM"];
 
 function Movie(props) {
     const [date, setDate] = useState(dates[0]);
