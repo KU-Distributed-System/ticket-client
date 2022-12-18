@@ -28,10 +28,11 @@ let seatList = [
 function Booking(props) {
     const [modal, setModal] = useState(false);
     const [title, setTitle] = useState(null);
-    const [seat, setSeat] = useState([]);
+    const [seat, setSeat] = useState('');
     const [classic, setClassic] = useState(0);
     const [kids, setKids] = useState(0);
     const [success, setSuccess] = useState(false);
+    const [fail, setFail] = useState(false);
 
     useEffect(() => {
         let search = new URLSearchParams(props.location.search);
@@ -61,14 +62,7 @@ function Booking(props) {
 
 
     const handleSeatChange = value => {
-        let seatNo = seat;
-        let index = seatNo.findIndex(x => x === value);
-        if (index !== - 1) {
-            seatNo.splice(index, 1);
-        } else {
-            seatNo.push(value);
-        }
-        setSeat([...seatNo]);
+        setSeat(value);
     }
 
     const toggle = () => setModal(!modal);
@@ -77,7 +71,7 @@ function Booking(props) {
         if (seat.length !== 0) {
             setClassic(seat.length);
             setKids(0);
-            setModal(true);
+            handleRequest();
         }
     }
 
@@ -116,6 +110,35 @@ function Booking(props) {
         props.history.push("/")
     }
 
+    const handleRequest = () => {
+        const config = {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: "1",
+                theaterId : "1",
+                seatType : seat[0],
+                seatNumber : seat[1],
+                concertId:"1"
+              }),
+
+          };
+          fetch("/books", config)
+            .then(response => {
+                console.log(response.status);
+                if(response.status === 200) {
+                    setSuccess(true);
+                } else if (response.status === 400) {
+                    setFail(true);
+                }
+                return response.json();
+            })
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    }
+
     return (
         <div>
             {title &&
@@ -152,10 +175,10 @@ function Booking(props) {
                 </div>
                 <div className={"confirm-ticket" + (seat.length === 0 ? " disabled" : "")} onClick={handleConfirm}>
                     <span>CONFIRM</span>
-                    <span style={{ fontSize: "14px" }}>{seat.length} ticket(s)</span>
+                    {/* <span style={{ fontSize: "14px" }}>{seat.length} ticket(s)</span> */}
                 </div>
             </div>
-
+            {/* 
             {modal &&
                 <Modal isOpen={modal} toggle={toggle}>
                     <ModalBody>
@@ -179,12 +202,12 @@ function Booking(props) {
                             </div>
                             <div className="ticket-total">
                                 <div>Total: RM {(classic * 18 + kids * 12).toFixed(2)}</div>
-                                <button className="btn btn-primary" disabled={(classic + kids) !== seat.length} onClick={() => { setSuccess(true); setModal(false) }}>Confirm</button>
+                                <button className="btn btn-primary" disabled={(classic + kids) !== seat.length} onClick={() => { handleRequest(); setSuccess(true); setModal(false) }}>Confirm</button>
                             </div>
                         </div>
                     </ModalBody>
                 </Modal>
-            }
+            } */}
             {success &&
                 <Modal isOpen={success} toggle={() => setSuccess(!success)}>
                     <ModalBody>
@@ -198,6 +221,17 @@ function Booking(props) {
                     </ModalBody>
                 </Modal>
             }
+            {fail &&
+                <Modal isOpen={fail} toggle={() => setFail(!fail)}>
+                    <ModalBody>
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                            <div className="mb-5">This seat is already booked.<br />Choose another seat.</div>
+                            <button className="btn btn-success w-75" style={{backgroundColor: "#EB1D36", borderColor: "#EB1D36"}} onClick={handleDone}>OKAY</button>
+                        </div>
+                    </ModalBody>
+                </Modal>
+            }
+
         </div>
     )
 }
